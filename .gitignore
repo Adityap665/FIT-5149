@@ -1,0 +1,28 @@
+# Operating-system and notebook artefacts
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Course-provided and competition data must remain local
+*.csv
+*.parquet
+*.feather
+
+# Assessment instructions, forms, reports, and packaged submissions
+*.pdf
+*.doc
+*.docx
+*.zip
+
+# Earlier local drafts that are not part of the clean implementation
+Untitled.ipynb
+plan_A1.md
+
