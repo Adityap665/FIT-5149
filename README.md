@@ -12,6 +12,9 @@ The development notebook contains:
 
 - data-quality and schema checks;
 - train/test missingness and distribution-shift comparisons;
+- annual and monthly income consistency checks;
+- categorical comparisons using sanction and rejection rates;
+- an identifier audit for `property_ref`;
 - target associations with missingness, numeric variables, and categorical variables;
 - treatment of encoded missing values;
 - investigation of the corrupted `property_age_years` field;
@@ -21,17 +24,21 @@ The development notebook contains:
 - out-of-fold error diagnostics;
 - a feature-engineering ablation using the same validation folds.
 
-`OUR_PART_REPORT_NOTES.md` records the current evidence and decisions for the EDA,
+`Eric_Report_notes.md` records the current evidence and decisions for the EDA,
 preprocessing, feature-engineering, and validation sections of the report.
 
 The final model and Kaggle submission have not yet been selected.
 
 ## Local setup
 
-1. Clone the repository.
-2. Create and activate a Python environment.
-3. Install the packages in `requirements.txt`.
-4. Open and run `assignment_1_from_scratch.ipynb` from top to bottom.
+1. Clone the repository and open a terminal in its folder.
+2. Create and activate a Python 3.11 environment.
+3. Install the packages with `python -m pip install -r requirements.txt`.
+4. Start Jupyter from the activated environment.
+5. Open `FIT5149_A1_analysis.ipynb`, restart the kernel, and run every cell from top to bottom.
+
+The recorded notebook results were produced with the exact package versions in
+`requirements.txt`.
 
 ## Collaboration workflow
 

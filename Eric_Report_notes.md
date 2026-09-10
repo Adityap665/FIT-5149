@@ -1,7 +1,7 @@
 # EDA, preprocessing, feature engineering, and validation notes
 
 These notes summarise the current reproducible results in
-`assignment_1_from_scratch.ipynb`. They are development notes rather than final report
+`FIT5149_A1_analysis.ipynb`. They are development notes rather than final report
 copy. Every reported value should remain tied to notebook output after subsequent model
 changes.
 
@@ -53,17 +53,30 @@ count and specific missingness indicators instead of relying only on imputed val
   It is not interpreted as property age.
 - An ablation found no improvement from using the corrupted field as an income backup:
   the Histogram Gradient Boosting RMSE was AUD 36,074 with the backup and AUD 36,065
-  without it. The field is therefore dropped entirely.
+  without it. Its numeric values are therefore dropped. Its missingness indicator is
+  retained and evaluated separately because availability may still carry information.
 - After sentinel cleaning, the checked monetary fields contain no nonpositive property
   values, negative repayments, nonpositive income, negative sanctioned amounts, or
   sanctions above the requested amount. Applicant ages are between 18 and 65.
+
+## Income consistency
+
+- Annual and monthly income are available together for 13,712 rows, or 70.97% of the
+  labelled data. Annual income alone is available for 762 rows, monthly income alone for
+  647 rows, and neither is available for 4,201 rows.
+- When both are present, their Pearson correlation is approximately 1.000 and the median
+  annual-to-monthly ratio is 11.999. The median relative difference between annual income
+  and 12 times monthly income is 2.40%, and 84.52% of these rows are within 5%.
+- Since the two fields mostly contain the same information, the current preprocessing
+  creates one reconciled annual-income feature. The raw income fields can be checked in a
+  simple comparison later if needed.
 
 ## Target structure and univariate EDA
 
 - There are 5,177 zero-sanction applications, representing 26.79% of training rows.
 - The rounded sanctioned/requested ratios take only eight values: 0, 0.65, 0.70, 0.75,
-  0.80, 0.85, 0.90, and 1.00. This indicates a tiered underwriting process and motivates
-  a later tier-aware model.
+  0.80, 0.85, 0.90, and 1.00. This pattern is useful when interpreting the target and
+  model errors.
 - The strongest Pearson relationships with the target are requested amount (0.740),
   property value (0.712), existing repayments (0.563), credit rating (0.375), and
   co-applicant status (0.269).
@@ -73,6 +86,20 @@ count and specific missingness indicators instead of relying only on imputed val
 - Categorical target differences are screening results only. `branch_id` has the largest
   spread in mean sanctioned amount across levels with at least 30 observations, but this
   may reflect different applicant and requested-amount mixes by branch.
+
+## Categorical findings
+
+- Credit rating has the clearest relationship with the outcome. The lowest credit band
+  has a 70.9% rejection rate and a 19.6% mean sanction rate, compared with 12.3% and
+  66.4% for the highest band.
+- Salaried applicants have a 29.3% rejection rate, compared with 14.4% for retirees.
+  These are raw group comparisons and do not control for income, age, or loan size.
+- Regional applicants have a 30.4% rejection rate and a 49.4% mean sanction rate. Inner
+  metropolitan applicants have a 22.0% rejection rate and a 56.9% mean sanction rate.
+- Applicants with variable income have a 29.0% rejection rate, compared with 15.4% for
+  steady income and 10.7% when income consistency is missing.
+- Rejection rates by branch range from 11.1% to 40.0%. This is descriptive only because
+  each branch can have a different mix of applicants and requested loan amounts.
 
 ## Preprocessing and feature engineering
 
@@ -105,8 +132,7 @@ fold, and all model families use identical precomputed folds.
 
 Random Forest currently leads Histogram Gradient Boosting by only AUD 71 mean RMSE. It
 wins four of five paired folds, while Gradient Boosting wins one fold by AUD 693. The
-difference is too small to declare either model final before tuning and tier-aware
-experiments.
+difference is too small to declare either model final before a small tuning comparison.
 
 RMSE remains the selection metric because it is the Kaggle metric and penalises costly
 large-dollar errors. MAE is reported as an operationally interpretable alternative.
@@ -114,19 +140,19 @@ MAPE is unsuitable because 26.79% of targets are zero.
 
 Current error analysis shows a major scale limitation: Random Forest RMSE rises from AUD
 9,375 in the smallest requested-amount quintile to AUD 63,686 in the largest quintile.
-The zero-sanction tier also has RMSE of AUD 60,841. The next modelling stage should focus
-on sanction/rejection classification, tier probabilities, and large-loan errors.
+The zero-sanction group also has RMSE of AUD 60,841. The next modelling stage should
+check whether small tuning changes improve errors for zero sanctions and large loans.
 
 ## Handoff to the modelling work
 
-The next experiments should use the existing folds and compare:
+The remaining work can stay close to the methods already used in class:
 
-1. direct AUD regression;
-2. sanction-rate regression converted back to AUD;
-3. a two-stage rejection plus positive-amount model;
-4. a probability-weighted classifier over the eight sanction tiers;
-5. bounded tuning for Random Forest and Histogram Gradient Boosting;
-6. leakage-safe alternatives for `property_ref` and `branch_id`.
+1. apply a small, clearly explained tuning search to Random Forest and Histogram Gradient
+   Boosting using the existing folds;
+2. compare the leading model with and without `property_ref`;
+3. present simple feature-influence evidence using correlations, category rates, and an
+   interpretable linear model already covered in class;
+4. select the final model, train it on all labelled data, and create the submission file.
 
-Final model selection, feature-influence evidence, retraining on all labelled data, and
-Kaggle submission generation remain outstanding.
+More complex two-stage or tier-classification models are not necessary unless the simple
+changes above fail and there is a clear reason to add them.
