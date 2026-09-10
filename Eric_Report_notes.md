@@ -110,7 +110,9 @@ count and specific missingness indicators instead of relying only on imputed val
   numeric inputs.
 - Categories are imputed and encoded inside each fold. Unknown and rare levels are
   handled without fitting encoders on the Kaggle test data.
-- `property_ref` is treated as categorical rather than continuous.
+- `property_ref` was initially treated as categorical rather than continuous. Removing it
+  lowers Random Forest mean RMSE from AUD 35,994 to AUD 35,956. The AUD 38 change is
+  small, but the simpler model performs slightly better, so later models exclude it.
 - Lending features include requested/property value, requested/reconciled annual income,
   repayments/reconciled monthly income, and property value minus requested amount.
 - With Histogram Gradient Boosting held fixed, ratios plus missingness indicators improve
@@ -143,16 +145,24 @@ Current error analysis shows a major scale limitation: Random Forest RMSE rises 
 The zero-sanction group also has RMSE of AUD 60,841. The next modelling stage should
 check whether small tuning changes improve errors for zero sanctions and large loans.
 
+After excluding `property_ref`, the original Random Forest settings produce a mean RMSE
+of AUD 35,956. The closest result is the initial Histogram Gradient Boosting model at AUD
+35,975. Five small parameter changes were tested across the same folds, but none improved
+on the original Random Forest settings. In particular, reducing its minimum leaf size
+increases mean RMSE to AUD 36,277, which suggests additional overfitting.
+
 ## Handoff to the modelling work
 
-The remaining work can stay close to the methods already used in class:
+The remaining work should proceed in two stages:
 
-1. apply a small, clearly explained tuning search to Random Forest and Histogram Gradient
-   Boosting using the existing folds;
-2. compare the leading model with and without `property_ref`;
-3. present simple feature-influence evidence using correlations, category rates, and an
+1. present feature-influence evidence using correlations, category rates, and an
    interpretable linear model already covered in class;
-4. select the final model, train it on all labelled data, and create the submission file.
+2. train the selected Random Forest benchmark on all labelled data and create a checked,
+   reproducible first Kaggle submission;
+3. after saving the benchmark, compare more competitive target-aware and boosting
+   approaches using the same validation folds;
+4. select the final model using cross-validation, retrain it on all labelled data, and
+   create the nominated submission file.
 
-More complex two-stage or tier-classification models are not necessary unless the simple
-changes above fail and there is a clear reason to add them.
+The public leaderboard can be recorded as a secondary check, but it should not replace
+the cross-validation evidence used to choose the final model.

@@ -22,7 +22,9 @@ The development notebook contains:
 - five-fold internal cross-validation;
 - initial Ridge, Random Forest, and Histogram Gradient Boosting models;
 - out-of-fold error diagnostics;
-- a feature-engineering ablation using the same validation folds.
+- a feature-engineering ablation using the same validation folds;
+- a `property_ref` feature-selection check;
+- a small hyperparameter comparison for the two leading tree models.
 
 `Eric_Report_notes.md` records the current evidence and decisions for the EDA,
 preprocessing, feature-engineering, and validation sections of the report.
