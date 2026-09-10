@@ -24,7 +24,10 @@ The development notebook contains:
 - out-of-fold error diagnostics;
 - a feature-engineering ablation using the same validation folds;
 - a `property_ref` feature-selection check;
-- a small hyperparameter comparison for the two leading tree models.
+- a small hyperparameter comparison for the two leading tree models;
+- permutation evidence for the most influential variables;
+- the first Random Forest Kaggle attempt, with a Public RMSE of 35,514.14046 and
+  position 37 when submitted.
 
 `Eric_Report_notes.md` records the current evidence and decisions for the EDA,
 preprocessing, feature-engineering, and validation sections of the report.
@@ -48,8 +51,11 @@ The recorded notebook results were produced with the exact package versions in
 - Keep data preparation inside model pipelines to prevent leakage.
 - Use the fixed validation folds when comparing models.
 - Record every reported result in reproducible code.
+- Name Kaggle files as `submission_<model>_attempt<number>.csv` and record the internal
+  validation result before uploading them.
+- Commit only the prediction files that were actually uploaded to Kaggle.
 - Review changes before merging into `main`.
-- Do not commit credentials, the assignment specification, generated submissions, or final reports.
+- Do not commit credentials, the assignment specification, unused prediction files, or final reports.
 
 ## Academic integrity
 

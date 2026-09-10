@@ -151,18 +151,31 @@ of AUD 35,956. The closest result is the initial Histogram Gradient Boosting mod
 on the original Random Forest settings. In particular, reducing its minimum leaf size
 increases mean RMSE to AUD 36,277, which suggests additional overfitting.
 
+Permutation evidence supports the earlier EDA. Shuffling `requested_amount_aud`
+increases validation RMSE by an average of AUD 32,585. The next largest increases are
+AUD 18,554 for `has_co_applicant` and AUD 17,008 for `credit_rating`. These results are
+used together with the numeric correlations and categorical rates because correlated
+features can share information and appear less important when shuffled separately.
+
+## Kaggle attempt 1
+
+`submission_rf_attempt1.csv` was generated using Random Forest with the original settings
+and without `property_ref`. Its internal five-fold RMSE is AUD 35,956. Kaggle reported a
+Public RMSE of 35,514.14046 and position 37 at the time of submission. The public result
+is approximately AUD 442 lower than the cross-validation result, but it is recorded only
+as a first comparison because the public leaderboard uses 20% of the test rows.
+
 ## Handoff to the modelling work
 
-The remaining work should proceed in two stages:
+The remaining work can now be handed over for the next modelling attempt:
 
-1. present feature-influence evidence using correlations, category rates, and an
-   interpretable linear model already covered in class;
-2. train the selected Random Forest benchmark on all labelled data and create a checked,
-   reproducible first Kaggle submission;
-3. after saving the benchmark, compare more competitive target-aware and boosting
-   approaches using the same validation folds;
-4. select the final model using cross-validation, retrain it on all labelled data, and
-   create the nominated submission file.
+1. review the current preprocessing, validation folds, and first Kaggle result;
+2. take ownership of a more competitive target-aware or boosting approach;
+3. evaluate it using the same five folds and record the result before using Kaggle;
+4. create `submission_<model>_attempt2.csv` only if the validation result improves;
+5. help write the modelling results and limitations for the report;
+6. select the final model together, retrain it on all labelled data, and create the
+   nominated submission file.
 
 The public leaderboard can be recorded as a secondary check, but it should not replace
 the cross-validation evidence used to choose the final model.
