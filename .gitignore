@@ -42,6 +42,10 @@ delivery/
 !AI Tool Usage Chatting History template.docx
 !Generative AI tools Declaration template.docx
 !assignment-cover-group.doc
+!report/group43_ass1_report.docx
+!report/group43_ass1_report.pdf
+!report/group43_project_plan_work_division.docx
+!forms/group43_assignment_cover.docx
 
 # Re-running an older notebook must not replace the submitted attempt files
 submissions/reproduced_*.csv

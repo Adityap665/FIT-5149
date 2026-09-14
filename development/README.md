@@ -11,6 +11,9 @@ report evidence, and rerunning comparisons. They are not extra final submissions
 - `prepare_final_notebook.py`: helper to build a new standalone notebook. It is not needed
   to run the current final notebook and does not reproduce its later handwritten commentary.
 - `verify_final_notebook.py`: fresh-kernel check of the final implementation.
+- `build_report.py`: builds the editable Word report from checked data and saved results,
+  without changing or training models. Requires python-docx, Pillow, pandas and NumPy.
+- `report_assets/`: figure generated from the final model's verified held-out errors.
 - `model_checks/*.json`: exact settings, validation scores, and the final verification record.
 - `model_checks/cache/`: local saved validation predictions, ignored by Git.
 - `.autosave_backup/`: local recovery copy of a notebook recreated by an open editor

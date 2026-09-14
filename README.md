@@ -23,7 +23,7 @@ FIT-5149/
     verify_final_notebook.py
     model_checks/           Saved scores, checks, and local caches
   submissions/              Original Kaggle attempt CSVs
-  report/                   Report notes and attempt history
+  report/                   Editable Word report, PDF, notes and attempt history
   forms/                    Original Word templates
 ```
 
@@ -32,7 +32,9 @@ submission. The analysis notebook contains our EDA and development work. The old
 final-clean notebook is Aditya's single-model implementation for attempts 2/3.
 The empty local `Untitled.ipynb` draft is also preserved under `development/` and ignored by Git.
 
-The notes in `report/` are drafting material, not the completed five-page PDF report.
+The Word and matching PDF in `report/` contain the five-page report with attempt 4
+results. The user-edited project plan and work-division appendix is included on page 6.
+See `report/README.md` before treating the PDF as the complete submission.
 The files in `forms/` are templates, not completed or signed forms.
 The repository as a whole is not the final implementation ZIP.
 
