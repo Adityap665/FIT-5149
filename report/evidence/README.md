@@ -5,8 +5,9 @@ That notebook is the source. The CSVs and figure here are its generated outputs,
 they do not need separate manual maintenance. Do not edit a calculated score here.
 
 The main model calculations were rerun on 14 September 2026. The run took about
-26 minutes on Eric's machine. The report-audit cell was then revised and tested
-separately against those newly generated tables to display outdated Word values.
+26 minutes on Eric's machine. After the Word corrections, section 16 was refreshed
+separately using those saved calculation results. All 41 numeric checks passed;
+no models were retrained during this report-only refresh.
 Running the notebook from top to bottom performs both the calculations and the audit.
 
 ## Main report outputs
@@ -33,7 +34,7 @@ The graph and selected-model results match the earlier report. All 10,000 recrea
 attempt 4 predictions match its original CSV byte for byte. Original submissions,
 the root final notebook and the Word/PDF files were not changed by this run.
 
-Four cells in the current Word tables need updating:
+The first check found four outdated Word values. These have now been corrected:
 
 | Location | Old report value | Recalculated value |
 |---|---:|---:|
@@ -42,16 +43,19 @@ Four cells in the current Word tables need updating:
 | Model comparison, RF without property_ref | 35,965 | 35,956 |
 | Model comparison, expected-tier HGB | 34,625 | 34,658 |
 
-The corresponding prose also needs syncing: the RF difference is about AUD 38,
+The corrected prose uses an RF difference of about AUD 38,
 not AUD 8. The current hard-tier HGB has mean fold RMSE about AUD 39,459 and mean
 fold MAE about AUD 14,425. The historical attempt 1 log and this RF rerun both
 round to AUD 35,956. Older intermediate scores should not be described as this run.
 These recalculated results also match the current saved analysis-notebook outputs.
 
-`word_numeric_tables_match` is currently false in the provenance record. This is
-deliberate: the notebook does not hide that the report needs a numeric update.
-Rerun its last cell after updating Word. The table audit does not replace reviewing
-the prose, figure placement or PDF layout.
+`word_numeric_tables_match` is now true in the provenance record. Its
+`report_audit_refresh` entry records that only the document check was refreshed
+from existing results, not the training. The notebook's last cell contains the
+matching table and a message confirming all six main numeric tables agree.
+After further Word changes, rerun that cell while the notebook's calculated
+variables are still available. The table audit does not replace reviewing the
+prose, figure placement or PDF layout.
 
 ## What can and cannot be recalculated
 

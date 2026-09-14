@@ -12,12 +12,12 @@
 10,Preprocessing: HGB cleaned raw features,"36,111","36,111",True
 11,Preprocessing: HGB ratios and missing flags,"36,065","36,065",True
 12,Preprocessing: HGB property-age income backup,"36,074","36,074",True
-13,Preprocessing: RF with property_ref,"35,973","35,994",False
-14,Preprocessing: RF without property_ref,"35,965","35,956",False
+13,Preprocessing: RF with property_ref,"35,994","35,994",True
+14,Preprocessing: RF without property_ref,"35,956","35,956",True
 15,Model: Ridge with prediction bounds,"43,306","43,306",True
-16,Model: Random Forest without property_ref,"35,965","35,956",False
+16,Model: Random Forest without property_ref,"35,956","35,956",True
 17,Model: HGB sanction rate,"34,812","34,812",True
-18,Model: HGB expected sanction tier,"34,625","34,658",False
+18,Model: HGB expected sanction tier,"34,658","34,658",True
 19,Model: Single CatBoost,"34,099.76","34,099.76",True
 20,Model: Two-stage CatBoost (attempt 4),"33,958.77","33,958.77",True
 21,Model: Three-seed average (attempt 5),"33,989.17","33,989.17",True

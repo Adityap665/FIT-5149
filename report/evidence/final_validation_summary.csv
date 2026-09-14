@@ -3,4 +3,4 @@ mean_fold_rmse_aud,33958.77327986962
 sd_fold_rmse_aud,1194.3243314853962
 global_oof_rmse_aud,33975.51233094338
 mae_aud,16850.524035619826
-validation_seconds,54.34014892578125
+validation_seconds,56.113259077072144
