@@ -1,0 +1,8 @@
+,Mean fold RMSE AUD
+Ridge with prediction bounds,43305.6438017906
+Random Forest without property_ref,35955.754939066195
+HGB sanction rate,34812.0239330131
+HGB expected sanction tier,34658.375732444336
+Single CatBoost,34099.7577987076
+Two-stage CatBoost (attempt 4),33958.77327986962
+Three-seed average (attempt 5),33989.174712297216

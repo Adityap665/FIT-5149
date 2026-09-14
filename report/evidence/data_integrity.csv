@@ -1,0 +1,12 @@
+,value
+training_rows,19322
+test_rows,10000
+duplicate_training_rows,0
+duplicate_test_rows,0
+duplicate_training_ids,0
+duplicate_test_ids,0
+shared_ids_between_train_and_test,0
+training_date_min,2023-01-01
+training_date_max,2024-12-30
+test_date_min,2023-01-01
+test_date_max,2024-12-30

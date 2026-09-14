@@ -1,0 +1,6 @@
+,version
+Python,3.11.15
+NumPy,2.4.6
+pandas,3.0.5
+scikit-learn,1.9.0
+CatBoost,1.2.10

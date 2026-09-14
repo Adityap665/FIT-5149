@@ -1,0 +1,6 @@
+,Mean fold RMSE AUD
+HGB cleaned raw features,36110.95104542564
+HGB ratios and missing flags,36064.8085547654
+HGB property-age income backup,36073.800280483716
+RF with property_ref,35994.206196121246
+RF without property_ref,35955.754939066195

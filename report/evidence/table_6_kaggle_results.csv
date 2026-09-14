@@ -1,0 +1,6 @@
+Attempt,Model,Public RMSE AUD
+1,Random Forest,35514.14046
+2,Single CatBoost rate model,33510.57914
+3,"Single CatBoost, clean implementation",33510.57914
+4,Two-stage CatBoost,33096.96156
+5,Three-seed two-stage average,33119.70974

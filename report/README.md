@@ -17,11 +17,17 @@ that no specific template exists and a clear format of our choice is acceptable.
 The cover-sheet contribution table does not replace this appendix.
 
 The original PDF received from Aditya in Downloads has not been overwritten.
-The report source builder is `../development/build_report.py`. It uses saved results
-and does not train or change models. Manual Word edits should be kept separately
-or carried into the builder before it is rerun, because rerunning replaces the Word file
-and removes the manually merged appendix. Do not rerun it over the current report.
+The source of the numerical evidence is now
+`../development/FIT5149_A1_final_clean.ipynb`. Its sections follow the report and
+recalculate the main tables and Figure 1. The generated files and provenance record
+are in `evidence/`. Kaggle scores are labelled as external observations, not local estimates.
+
+`../development/build_report.py` is only the earlier layout builder. It reads the
+notebook's exported tables and figure and writes a separate five-page rebuild draft.
+That draft does not include the manually edited appendix. Do not replace the current
+report with it without reviewing and restoring those edits.
 Export and visually check the PDF again after any Word changes.
 
-Use the current final notebook for final-model results, not the older clean notebook.
+Use `final_clean` to follow the report calculations. Use the root final notebook for
+the standalone attempt 4 implementation. Attempt 5 is a later, unselected experiment.
 The Word templates are in `../forms/`.

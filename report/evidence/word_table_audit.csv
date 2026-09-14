@@ -1,0 +1,42 @@
+,item,Word value,Calculated value,matches
+0,"Missing: property_age_years, Train missing %",32.40,32.40,True
+1,"Missing: property_age_years, Test missing %",32.62,32.62,True
+2,"Missing: monthly_income_aud, Train missing %",25.69,25.69,True
+3,"Missing: monthly_income_aud, Test missing %",24.84,24.84,True
+4,"Missing: annual_income_aud, Train missing %",25.09,25.09,True
+5,"Missing: annual_income_aud, Test missing %",24.85,24.85,True
+6,"Missing: employment_sector, Train missing %",24.36,24.36,True
+7,"Missing: employment_sector, Test missing %",24.19,24.19,True
+8,"Missing: credit_rating, Train missing %",20.46,20.46,True
+9,"Missing: credit_rating, Test missing %",21.33,21.33,True
+10,Preprocessing: HGB cleaned raw features,"36,111","36,111",True
+11,Preprocessing: HGB ratios and missing flags,"36,065","36,065",True
+12,Preprocessing: HGB property-age income backup,"36,074","36,074",True
+13,Preprocessing: RF with property_ref,"35,973","35,994",False
+14,Preprocessing: RF without property_ref,"35,965","35,956",False
+15,Model: Ridge with prediction bounds,"43,306","43,306",True
+16,Model: Random Forest without property_ref,"35,965","35,956",False
+17,Model: HGB sanction rate,"34,812","34,812",True
+18,Model: HGB expected sanction tier,"34,625","34,658",False
+19,Model: Single CatBoost,"34,099.76","34,099.76",True
+20,Model: Two-stage CatBoost (attempt 4),"33,958.77","33,958.77",True
+21,Model: Three-seed average (attempt 5),"33,989.17","33,989.17",True
+22,Partition 42: Single CatBoost,"34,099.76","34,099.76",True
+23,Partition 42: Two-stage CatBoost,"33,958.77","33,958.77",True
+24,Partition 2026: Single CatBoost,"34,323.40","34,323.40",True
+25,Partition 2026: Two-stage CatBoost,"34,119.05","34,119.05",True
+26,"Permutation: requested_amount_aud, mean","51,199","51,199",True
+27,"Permutation: requested_amount_aud, std","1,842","1,842",True
+28,"Permutation: credit_rating, mean","20,198","20,198",True
+29,"Permutation: credit_rating, std","1,873","1,873",True
+30,"Permutation: has_co_applicant, mean","17,953","17,953",True
+31,"Permutation: has_co_applicant, std",904,904,True
+32,"Permutation: income_consistency, mean","1,356","1,356",True
+33,"Permutation: income_consistency, std",489,489,True
+34,"Permutation: applicant_age, mean",60,60,True
+35,"Permutation: applicant_age, std",41,41,True
+36,Kaggle attempt 1,"35,514.14046","35,514.14046",True
+37,Kaggle attempt 2,"33,510.57914","33,510.57914",True
+38,Kaggle attempt 3,"33,510.57914","33,510.57914",True
+39,Kaggle attempt 4,"33,096.96156","33,096.96156",True
+40,Kaggle attempt 5,"33,119.70974","33,119.70974",True

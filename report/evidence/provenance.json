@@ -1,0 +1,69 @@
+{
+  "source_notebook": "development/FIT5149_A1_final_clean.ipynb",
+  "input_sha256": {
+    "training_set.csv": "71217fdc291662398c4646c0563d23aa6dffc43a88d3bd473bb70f901b2d8b0c",
+    "kaggle_test_X.csv": "b131ac59bbda04eb37d41e5a64b5886fbce3171f53262b33cae01ad55519deac",
+    "sample_submission.csv": "0f332416f5449f045c13ec36d36b5a691926ac3060c802529c27876c43046e97"
+  },
+  "selected_model": "attempt4_two_stage_catboost",
+  "main_results_retrained": true,
+  "broader_search_retrained": false,
+  "original_submissions_unchanged": true,
+  "exact_attempt4_csv_match": true,
+  "prediction_sha256": "53a5594ef946ab07932f9599b064556ca112b2e6275606b72da4950ab6be054a",
+  "word_report_sha256": "5e179b0d7ab67c35e8c3d5520d6ecfab790401934c8df025cfbd918829a00815",
+  "word_numeric_tables_match": false,
+  "software": {
+    "Python": "3.11.15",
+    "NumPy": "2.4.6",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.0",
+    "CatBoost": "1.2.10"
+  },
+  "kaggle_source": "Public scores confirmed by the team from submission results, not locally calculated",
+  "team": {
+    "group": 43,
+    "team": "TEAM ERIC-ADITYA",
+    "usernames": [
+      "adityapalve9979",
+      "ericacostaramirez"
+    ]
+  },
+  "table_files": [
+    "error_by_sanction_rate.csv",
+    "paired_fold_comparison.csv",
+    "score_differences.csv",
+    "error_by_credit_missing.csv",
+    "error_by_approved.csv",
+    "data_integrity.csv",
+    "permutation_repeats.csv",
+    "target_checks.csv",
+    "table_4_partition_stability.csv",
+    "sanction_rates.csv",
+    "rate_hgb_comparison.csv",
+    "initial_model_comparison.csv",
+    "property_reference_check.csv",
+    "table_1_missing_values.csv",
+    "error_by_request_band.csv",
+    "final_validation_folds.csv",
+    "table_3_model_comparison.csv",
+    "archived_extended_search.csv",
+    "final_validation_summary.csv",
+    "catboost_comparison_folds.csv",
+    "final_predictors.csv",
+    "table_6_kaggle_results.csv",
+    "table_5_permutation.csv",
+    "target_correlations.csv",
+    "table_2_preprocessing.csv",
+    "property_age_checks.csv",
+    "initial_model_folds.csv",
+    "tier_hgb_comparison.csv",
+    "hgb_feature_checks.csv",
+    "final_model_settings.csv",
+    "sentinel_codes.csv",
+    "word_table_audit.csv",
+    "software_versions.csv"
+  ],
+  "figure_file": "figure_1_error_by_request.png",
+  "notebook_code_sha256": "f508efd2ed20009248ca6060cd7dcdd01de93f984bb867f77fd55f8a704f6dd2"
+}

@@ -13,9 +13,9 @@ FIT-5149/
   training_set.csv          Input data, kept here for the final notebook
   kaggle_test_X.csv
   sample_submission.csv
-  development/              Earlier notebooks and experiment tools
+  development/              Report evidence, earlier analysis and experiment tools
     FIT5149_A1_analysis.ipynb
-    FIT5149_A1_final_clean.ipynb
+    FIT5149_A1_final_clean.ipynb  Main notebook for checking the report
     FIT5149_A1_attempt5.ipynb
     attempt5_experiments.py
     loan_experiments.py
@@ -27,9 +27,12 @@ FIT-5149/
   forms/                    Original Word templates
 ```
 
-There are four working notebooks, including the separate attempt 5 experiment. Use the final notebook in the root for the current
-submission. The analysis notebook contains our EDA and development work. The older
-final-clean notebook is Aditya's single-model implementation for attempts 2/3.
+There are still four working notebooks. No additional report notebook was added.
+Use `development/FIT5149_A1_final_clean.ipynb` to reproduce the report's numerical
+evidence and Figure 1. It now includes the earlier comparisons, selected attempt 4,
+attempt 5 comparison, and a check that attempt 4 is reproduced exactly.
+The root final notebook remains the standalone selected-model implementation.
+The analysis notebook preserves the original EDA and development history.
 The empty local `Untitled.ipynb` draft is also preserved under `development/` and ignored by Git.
 
 The Word and matching PDF in `report/` contain the five-page report with attempt 4
@@ -67,10 +70,29 @@ Attempt 4 was submitted: public RMSE 33,096.96156, position 19 in Eric's screens
 The position can change, and the private leaderboard determines the competition marks.
 Nominate its Kaggle entry before using this implementation for the final assessment.
 
-The earlier `development/FIT5149_A1_final_clean.ipynb` is retained as Aditya's attempt 2/3 reference.
-It uses the original single-regressor CatBoost. When rerun, it now saves
-`submissions/reproduced_catboost_clean.csv` so it cannot replace the final submission.
-Use `FIT5149_A1_final.ipynb` to reproduce the new candidate.
+`development/FIT5149_A1_final_clean.ipynb` has been updated, with the team's agreement,
+from Aditya's attempts 2/3 implementation into the report-evidence notebook. The old
+version is preserved in Git commit `fc3a1ae` and a local ignored recovery copy.
+The selected final model is attempt 4, not the most recent upload, attempt 5.
+
+## Reproduce the report evidence
+
+Open `development/FIT5149_A1_final_clean.ipynb`, restart its kernel and run all cells.
+It recalculates all six main report tables and Figure 1. Main model comparisons are
+trained again; their scores are not copied from saved JSON files. The verification run
+took about 26 minutes on Eric's computer, so allow time for the complete comparison.
+The exported tables, row-level OOF predictions, plot and source record are placed in
+`report/evidence/`. Its table of contents maps each report section to the calculation.
+
+Kaggle public scores are clearly labelled as externally confirmed submission results:
+they cannot be recalculated locally without the hidden targets. The broader 15-model
+search is separately labelled as an archived log, with an optional full rerun switch.
+It is not substituted for the freshly calculated main report tables.
+
+This notebook does not replace the current Word/PDF, appendix or original CSVs.
+Its regenerated attempt 4 CSV stays in `report/evidence/` and must match the original.
+If Jupyter already has the old notebook open, close it without saving that stale tab
+and reopen the updated file before running it.
 
 ## Validation evidence
 
@@ -128,7 +150,8 @@ of the exact CSV. The final notebook has no dependency on the development script
 
 ## Development files
 
-- `development/FIT5149_A1_analysis.ipynb`: EDA, earlier model comparisons, and historical attempts.
+- `development/FIT5149_A1_final_clean.ipynb`: one place to reproduce the report evidence.
+- `development/FIT5149_A1_analysis.ipynb`: original EDA, earlier model comparisons, and historical attempts.
 - `report/Eric_Report_notes.md`: evidence for the EDA and preprocessing sections.
 - `development/loan_experiments.py`: reproducible comparison of the later candidates.
 - `development/model_checks/`: saved configurations, scores, and final-model diagnostics.
@@ -154,19 +177,25 @@ The verification helper currently uses Eric's registered `fit5196` kernel. Adity
 can run the final notebook directly with his own environment.
 
 Open development notebooks from `development/`, or start their kernel in the repository
-root. They find the input CSVs in the root. Their rerun outputs use a `reproduced_`
-prefix in `submissions/`; the original attempt CSVs are preserved. Existing notebook
-outputs document the earlier runs, before this folder reorganisation.
+root. They find the input CSVs in the root. The analysis and attempt 5 notebooks write
+rerun predictions with a `reproduced_` prefix in `submissions/`. The report-evidence
+notebook writes only to `report/evidence/`. Original attempt CSVs are preserved.
 
 The development requirements include XGBoost 3.2.0 because it was evaluated. The final
-selected model uses CatBoost only. Rejected candidate code belongs in the development
-repository, not in the final implementation ZIP.
+selected model uses CatBoost only. Keep rejected experiments separate from the small
+final implementation. Staff's forum clarification also recommends including the EDA
+and analysis notebook as supporting material in the code submission; rejected model
+implementations are not all required. Their comparison still belongs in the report.
 
 ## Final handoff
 
 The final ZIP should contain the final notebook, its matching `submission.csv`, this
 README, requirements, the signed cover sheet, the completed AI declaration, and the
-AI chat-history file. Check that the selected Kaggle submission matches this model.
+AI chat-history file. Include the report-evidence notebook and supporting EDA as
+recommended by the staff clarification. Preserve the folders and the helper/results
+used by section 13 if including the report-evidence notebook. Do not ZIP the entire
+repository with Git files, caches and recovery copies.
+Check that the selected Kaggle submission matches this model.
 
 The report is submitted separately as `group43_ass1_report.pdf`. Include both members'
 actual Kaggle usernames, TEAM ERIC-ADITYA, the comparison results, model limitations,
