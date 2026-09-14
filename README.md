@@ -1,62 +1,78 @@
-# FIT5149 Assessment 1
+# FIT5149 Assessment 1 — Final Implementation
 
-Collaborative development repository for the **Sanctioned Loan Amount Prediction** assignment.
+## Group
+**Group ID:** 43
 
-> This repository contains course-provided data and templates for authorised group
-> collaboration. Keep it private while the assessment is active and do not redistribute
-> its contents. The assignment specification itself is intentionally excluded.
+## Final model
+The submitted implementation reproduces the team's final Kaggle model:
 
-## Current status
+**CatBoost target-aware sanction-rate regression**
 
-The development notebook contains:
+The model predicts the sanction rate for each application and converts that prediction back to a sanctioned dollar amount using `requested_amount_aud`.
 
-- data-quality and schema checks;
-- train/test missingness and distribution-shift comparisons;
-- annual and monthly income consistency checks;
-- categorical comparisons using sanction and rejection rates;
-- an identifier audit for `property_ref`;
-- target associations with missingness, numeric variables, and categorical variables;
-- treatment of encoded missing values;
-- investigation of the corrupted `property_age_years` field;
-- feature engineering based on lending ratios and application dates;
-- five-fold internal cross-validation;
-- initial Ridge, Random Forest, and Histogram Gradient Boosting models;
-- out-of-fold error diagnostics;
-- a feature-engineering ablation using the same validation folds;
-- a `property_ref` feature-selection check;
-- a small hyperparameter comparison for the two leading tree models;
-- permutation evidence for the most influential variables;
-- the first Random Forest Kaggle attempt, with a Public RMSE of 35,514.14046 and
-  position 37 when submitted.
+## Files required to run
+Place the following files in the same directory:
 
-`Eric_Report_notes.md` records the current evidence and decisions for the EDA,
-preprocessing, feature-engineering, and validation sections of the report.
+- `FIT5149_A1_final.ipynb`
+- `training_set.csv`
+- `kaggle_test_X.csv`
+- `sample_submission.csv`
 
-The final model and Kaggle submission have not yet been selected.
+## Environment
+Recommended environment:
 
-## Local setup
+- Python 3.11.9
+- numpy
+- pandas
+- scikit-learn
+- matplotlib
+- catboost 1.2.10
+- jupyter / jupyterlab
 
-1. Clone the repository and open a terminal in its folder.
-2. Create and activate a Python 3.11 environment.
-3. Install the packages with `python -m pip install -r requirements.txt`.
-4. Start Jupyter from the activated environment.
-5. Open `FIT5149_A1_analysis.ipynb`, restart the kernel, and run every cell from top to bottom.
+Install the required packages using:
 
-The recorded notebook results were produced with the exact package versions in
-`requirements.txt`.
+```bash
+pip install -r requirements.txt
+```
 
-## Collaboration workflow
+## How to run
+1. Open `FIT5149_A1_final.ipynb` in Jupyter Notebook or JupyterLab.
+2. Make sure the three supplied CSV files are in the same directory as the notebook.
+3. Restart the kernel.
+4. Run all cells from top to bottom.
+5. The notebook will:
+   - validate the input files,
+   - perform the required cleaning and feature engineering,
+   - reproduce the five-fold validation of the selected CatBoost model,
+   - retrain the final model using all labelled training data,
+   - generate the final Kaggle prediction file.
 
-- Create a short-lived branch for each change.
-- Keep data preparation inside model pipelines to prevent leakage.
-- Use the fixed validation folds when comparing models.
-- Record every reported result in reproducible code.
-- Name Kaggle files as `submission_<model>_attempt<number>.csv` and record the internal
-  validation result before uploading them.
-- Commit only the prediction files that were actually uploaded to Kaggle.
-- Review changes before merging into `main`.
-- Do not commit credentials, the assignment specification, unused prediction files, or final reports.
+## Output
+Running the notebook creates:
 
-## Academic integrity
+`submission.csv`
 
-All contributors are responsible for following the unit's collaboration and generative-AI rules. Any permitted AI assistance must be declared in the submitted documentation.
+This file contains:
+
+- `application_id`
+- `sanctioned_amount_aud`
+
+The output is checked for row count, identifier order, missing predictions, finite values, non-negative predictions, and predictions not exceeding the requested loan amount.
+
+## Reproducibility
+The implementation uses:
+
+- `RANDOM_STATE = 42`
+- `N_SPLITS = 5`
+- `StratifiedKFold(shuffle=True, random_state=42)`
+- CatBoost with a fixed random seed
+
+The notebook also prints package-version information at the end.
+
+## Notes
+Only the implementation of the final selected model is included, as required by the assignment instructions. Code for candidate models that were evaluated but rejected has been removed. Their validation results and comparison are presented in the written report.
+
+## Final submission file
+The notebook must reproduce the submitted Kaggle file:
+
+`submission.csv`
