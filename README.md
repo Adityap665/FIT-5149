@@ -2,6 +2,38 @@
 
 Kaggle team: **TEAM ERIC-ADITYA**.
 
+## Where to find everything
+
+```text
+FIT-5149/
+  FIT5149_A1_final.ipynb     Current final implementation
+  submission.csv           Predictions matching attempt 4
+  README.md
+  requirements.txt
+  training_set.csv          Input data, kept here for the final notebook
+  kaggle_test_X.csv
+  sample_submission.csv
+  development/              Earlier notebooks and experiment tools
+    FIT5149_A1_analysis.ipynb
+    FIT5149_A1_final_clean.ipynb
+    loan_experiments.py
+    prepare_final_notebook.py
+    verify_final_notebook.py
+    model_checks/           Saved scores, checks, and local caches
+  submissions/              Original Kaggle attempt CSVs
+  report/                   Report notes and attempt history
+  forms/                    Original Word templates
+```
+
+There are three working notebooks. Use the final notebook in the root for the current
+submission. The analysis notebook contains our EDA and development work. The older
+final-clean notebook is Aditya's single-model implementation for attempts 2/3.
+The empty local `Untitled.ipynb` draft is also preserved under `development/` and ignored by Git.
+
+The notes in `report/` are drafting material, not the completed five-page PDF report.
+The files in `forms/` are templates, not completed or signed forms.
+The repository as a whole is not the final implementation ZIP.
+
 ## Current model and submission
 
 The selected candidate is a two-stage CatBoost model:
@@ -14,12 +46,14 @@ We keep probabilities rather than assigning every application a hard approve/rej
 decision. Predictions are limited to zero through the requested amount.
 
 `FIT5149_A1_final.ipynb` is the standalone implementation for this model. It creates
-`submission.csv`, which must match `submission_catboost_twostage_attempt4.csv`.
-Attempt 4 is prepared locally; its public score remains pending until it is uploaded.
+`submission.csv`, which must match `submissions/submission_catboost_twostage_attempt4.csv`.
+Attempt 4 was submitted: public RMSE 33,096.96156, position 19 in Eric's screenshot.
+The position can change, and the private leaderboard determines the competition marks.
 Nominate its Kaggle entry before using this implementation for the final assessment.
 
-The earlier `FIT5149_A1_final_clean.ipynb` is retained as Aditya's attempt 2/3 reference.
-It uses the original single-regressor CatBoost and produces a different `submission.csv`.
+The earlier `development/FIT5149_A1_final_clean.ipynb` is retained as Aditya's attempt 2/3 reference.
+It uses the original single-regressor CatBoost. When rerun, it now saves
+`submissions/reproduced_catboost_clean.csv` so it cannot replace the final submission.
 Use `FIT5149_A1_final.ipynb` to reproduce the new candidate.
 
 ## Validation evidence
@@ -35,7 +69,7 @@ not create an independent test set or remove model-selection bias.
 
 The improvement is modest. It does not establish a statistically significant gain
 or guarantee a better Kaggle score. We selected the candidate from internal validation,
-not from a new public leaderboard result. `KAGGLE_ATTEMPTS.md` records the comparison.
+not from a new public leaderboard result. `report/KAGGLE_ATTEMPTS.md` records the comparison.
 
 ## Setup and execution
 
@@ -73,23 +107,40 @@ the prediction file is saved.
 - Verification environment: Python 3.11.15, NumPy 2.4.6, pandas 3.0.5,
   scikit-learn 1.9.0, CatBoost 1.2.10.
 
-`model_checks/final_verification.json` records the fresh-kernel check and the SHA256
+`development/model_checks/final_verification.json` records the fresh-kernel check and the SHA256
 of the exact CSV. The final notebook has no dependency on the development scripts.
 
 ## Development files
 
-- `FIT5149_A1_analysis.ipynb`: EDA, earlier model comparisons, and historical attempts.
-- `Eric_Report_notes.md`: evidence for the EDA and preprocessing sections.
-- `loan_experiments.py`: reproducible comparison of the later candidates.
-- `model_checks/`: saved configurations, scores, and final-model diagnostics.
-- `prepare_final_notebook.py`: creates the standalone selected-model notebook.
-- `verify_final_notebook.py`: runs that notebook in a fresh kernel and compares its CSV.
+- `development/FIT5149_A1_analysis.ipynb`: EDA, earlier model comparisons, and historical attempts.
+- `report/Eric_Report_notes.md`: evidence for the EDA and preprocessing sections.
+- `development/loan_experiments.py`: reproducible comparison of the later candidates.
+- `development/model_checks/`: saved configurations, scores, and final-model diagnostics.
+- `development/prepare_final_notebook.py`: creates the standalone selected-model notebook.
+- `development/verify_final_notebook.py`: runs that notebook in a fresh kernel and compares its CSV.
 
 To reproduce the small model comparison, run:
 
 ```bash
-python loan_experiments.py
+python development/loan_experiments.py
 ```
+
+Run these commands from the repository root. The experiment runner saves scores in
+`development/model_checks/` and new attempt CSVs in `submissions/`.
+
+To verify the final notebook against the submitted attempt:
+
+```bash
+python development/verify_final_notebook.py FIT5149_A1_final.ipynb submissions/submission_catboost_twostage_attempt4.csv
+```
+
+The verification helper currently uses Eric's registered `fit5196` kernel. Aditya
+can run the final notebook directly with his own environment.
+
+Open development notebooks from `development/`, or start their kernel in the repository
+root. They find the input CSVs in the root. Their rerun outputs use a `reproduced_`
+prefix in `submissions/`; the original attempt CSVs are preserved. Existing notebook
+outputs document the earlier runs, before this folder reorganisation.
 
 The development requirements include XGBoost 3.2.0 because it was evaluated. The final
 selected model uses CatBoost only. Rejected candidate code belongs in the development

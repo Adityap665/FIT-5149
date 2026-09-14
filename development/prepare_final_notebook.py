@@ -15,7 +15,7 @@ import nbformat
 import loan_experiments as experiments
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def build_notebook(model_name, filename):
@@ -24,7 +24,7 @@ def build_notebook(model_name, filename):
         raise ValueError("This final notebook builder supports the selected CatBoost candidates.")
     if config.get("weight_power"):
         raise ValueError("The weighted candidate was rejected and is not a supported final model.")
-    source = nbformat.read(ROOT / "FIT5149_A1_final_clean.ipynb", as_version=4)
+    source = nbformat.read(ROOT / "development" / "FIT5149_A1_final_clean.ipynb", as_version=4)
     train, test, sample, x, xt, categories = experiments.load_data()
     predictors = experiments.model_features(x, config).columns.tolist()
     params = {k: v for k, v in config.items() if k not in {"kind", "feature_set", "weight_power"}}
@@ -50,6 +50,8 @@ def build_notebook(model_name, filename):
     )]
     for index in range(1, 12):
         cell = copy.deepcopy(source.cells[index])
+        if index == 2:
+            cell.source = "## 1. Load the supplied data\n\nKeep the three input CSVs in the same folder as this final notebook."
         if index == 1:
             cell.source = cell.source.replace(
                 "from catboost import CatBoostRegressor",

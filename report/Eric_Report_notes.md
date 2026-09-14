@@ -195,4 +195,6 @@ not a guarantee of a better Kaggle score. Both partitions reuse the same labelle
 
 Use `KAGGLE_ATTEMPTS.md` and the executed `FIT5149_A1_final.ipynb` for the final model's
 error analysis and feature checks. The prepared attempt 4 CSV is
-`submission_catboost_twostage_attempt4.csv`; its public score is still pending.
+`submissions/submission_catboost_twostage_attempt4.csv`; its confirmed public RMSE is
+AUD 33,096.96156, with position 19 in Eric's submission screenshot. The final grade uses
+the private leaderboard, not this public position.

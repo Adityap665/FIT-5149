@@ -12,7 +12,7 @@ import nbformat
 from nbclient import NotebookClient
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
 def verify(notebook_name, prediction_name):
@@ -63,7 +63,7 @@ for column in ["approved", "credit_missing", "request_band", "sanction_rate"]:
         record.update(notebook=notebook_name, candidate_file=prediction_name,
                       code_sha256=code_hash, prediction_sha256=generated_hash,
                       fresh_kernel_passed=True, exact_csv_match=True)
-        (ROOT / "model_checks" / "final_verification.json").write_text(json.dumps(record, indent=2) + "\n")
+        (ROOT / "development" / "model_checks" / "final_verification.json").write_text(json.dumps(record, indent=2) + "\n")
         destination = ROOT / "submission.csv"
         if destination.exists() and hashlib.sha256(destination.read_bytes()).hexdigest() != generated_hash:
             raise FileExistsError("An existing, different submission.csv must be preserved.")

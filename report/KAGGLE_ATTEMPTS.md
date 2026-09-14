@@ -7,11 +7,12 @@
 | 1 | Random Forest | 35,514.14046 | Submitted earlier |
 | 2 | Original CatBoost rate model | 33,510.57914 | Submitted by the team |
 | 3 | Original CatBoost, clean implementation | 33,510.57914 | Matched the earlier best score |
-| 4 | Two-stage CatBoost | Pending | CSV prepared locally, not uploaded by this workflow |
+| 4 | Two-stage CatBoost | 33,096.96156 | Submitted by Eric; position 19 in his screenshot |
 
-The prepared file is `submission_catboost_twostage_attempt4.csv`. The current
+The submitted file is `submissions/submission_catboost_twostage_attempt4.csv`. The current
 `FIT5149_A1_final.ipynb` must reproduce exactly the same predictions as `submission.csv`.
-A new public score should only be entered here after the team actually submits the file.
+Attempt 4 improved the public RMSE by 413.61758 compared with the previous best.
+Position 19 is the position at submission, not a final rank. Marks use the private score.
 Confirm the next unused attempt number with Aditya if he uploads anything else.
 
 ## Why we tried two stages
@@ -84,21 +85,21 @@ Another upload with the same predictions would not test a different model.
 
 ## Reproduce the comparison
 
-Install `requirements.txt`, then run:
+All paths below are relative to the repository root. Install `requirements.txt`, then run from that root:
 
 ```bash
-python loan_experiments.py
-python loan_experiments.py --models catboost_current catboost_two_stage --split-seed 2026
+python development/loan_experiments.py
+python development/loan_experiments.py --models catboost_current catboost_two_stage --split-seed 2026
 ```
 
 Each completed model stores its exact settings, fold scores, feature list, data SHA256,
-and runtime in `model_checks/`. Local OOF arrays are cached in `model_checks/cache/`.
+and runtime in `development/model_checks/`. Local OOF arrays are cached in `development/model_checks/cache/`.
 If caches are absent, the calculations run again.
 
 The standalone final notebook includes the selected model's own error breakdown and
 three-repeat permutation checks for five prespecified inputs. It does not depend on
 the experiment runner. Its fresh-kernel verification is recorded in
-`model_checks/final_verification.json`.
+`development/model_checks/final_verification.json`.
 
 ## Final-model findings for the report
 
@@ -125,7 +126,7 @@ the whole prediction process; its effect is not directly comparable to the earli
 Random Forest check, which kept the original requested-amount cap.
 
 These numbers come from the selected model's own validation predictions, not from
-the earlier Random Forest results. No public score is available for attempt 4 yet.
+the earlier Random Forest results. Attempt 4 has a confirmed public RMSE of AUD 33,096.96156.
 
 ## What Aditya can finish
 
@@ -135,7 +136,7 @@ the earlier Random Forest results. No public score is available for attempt 4 ye
   TEAM ERIC-ADITYA and Group 43 in the report.
 - Complete the cover sheet, AI declaration, AI chat history, and work-division statement.
 - Confirm which Kaggle entries are nominated for the private evaluation.
-- Assemble the implementation ZIP after the new prediction file is uploaded and nominated.
+- Assemble the implementation ZIP after confirming the matching Kaggle entry is nominated.
   Include the matching final model, not the older clean reference notebook.
 
 Kaggle allows three submissions per day per team. Check remaining daily slots before

@@ -17,7 +17,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import StratifiedKFold
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 TARGET = "sanctioned_amount_aud"
 SEED = 42
 THREADS = 6
@@ -225,7 +225,7 @@ def evaluate(names, split_seed=42):
     y = train[TARGET]
     strata = (y / train["requested_amount_aud"]).round(2).map(lambda v: f"{v:.2f}")
     folds = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=split_seed).split(x, strata))
-    out = ROOT / "model_checks"
+    out = ROOT / "development" / "model_checks"
     cache = out / "cache"
     cache.mkdir(parents=True, exist_ok=True)
     summaries = []
@@ -270,8 +270,8 @@ def evaluate(names, split_seed=42):
 
 def export_prediction(name, output_name):
     if Path(output_name).name != output_name or not output_name.endswith(".csv"):
-        raise ValueError("Use a CSV filename in the repository folder.")
-    destination = ROOT / output_name
+        raise ValueError("Use a CSV filename without folders; it will be saved in submissions/.")
+    destination = ROOT / "submissions" / output_name
     if destination.exists():
         raise FileExistsError(f"Keep the existing prediction file: {destination.name}")
     train, test, sample, x, x_test, categories = load_data()
