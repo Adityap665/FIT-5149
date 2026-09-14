@@ -8,6 +8,7 @@
 | 2 | Original CatBoost rate model | 33,510.57914 | Submitted by the team |
 | 3 | Original CatBoost, clean implementation | 33,510.57914 | Matched the earlier best score |
 | 4 | Two-stage CatBoost | 33,096.96156 | Submitted by Eric; position 19 in his screenshot |
+| 5 | Equal average of three two-stage CatBoost models | 33,119.70974 | Submitted by Eric; attempt 4 remained the best public score |
 
 The submitted file is `submissions/submission_catboost_twostage_attempt4.csv`. The current
 `FIT5149_A1_final.ipynb` must reproduce exactly the same predictions as `submission.csv`.
@@ -127,6 +128,81 @@ Random Forest check, which kept the original requested-amount cap.
 
 These numbers come from the selected model's own validation predictions, not from
 the earlier Random Forest results. Attempt 4 has a confirmed public RMSE of AUD 33,096.96156.
+
+## Attempt 5: one last experimental alternative
+
+We tested five variations of attempt 4, plus an exact repeat of attempt 4 as a check.
+The repeat matched the earlier validation result. None of the new variations improved
+the original split's mean RMSE.
+
+| Variation | Mean fold RMSE, split 42 |
+|---|---:|
+| Attempt 4, repeated | 33,958.77 |
+| Equal average of seeds 42, 73, and 2026 | 33,989.17 |
+| Approval classifier with 600 iterations | 33,993.87 |
+| Training weights proportional to requested amount | 34,089.24 |
+| Squared-error approval model, depth 5 | 34,090.07 |
+| Squared-error approval model, depth 3 | 34,411.71 |
+
+The seed average was the closest alternative, so we checked it on the second partition
+already used for attempt 4. The same rows are reused, so this is a stability check, not
+an independent test or proof of significance.
+
+| Model | Mean fold RMSE, split 42 | Mean fold RMSE, split 2026 |
+|---|---:|---:|
+| Attempt 4 | 33,958.77 | 34,119.05 |
+| Three-seed average | 33,989.17 | 34,081.52 |
+
+The new candidate is worse by AUD 30.40 on the first partition and better by AUD 37.54
+on the second. Averaging these two mean scores gives only about AUD 3.57 improvement.
+This is effectively a tie, not evidence of a clear gain. Its global OOF RMSE is
+34,005.33 on split 42 and 34,092.48 on split 2026. We do not claim the candidate is
+better or that it will cross the 33,000 threshold on Kaggle.
+
+Eric requested one last available upload. We prepared the seed average as a separate
+experimental alternative, while retaining attempt 4 as the current final implementation.
+At preparation time, the new public score was still unknown; the confirmed result is recorded below.
+
+For each seed, the approval model uses depth 5 and 1,200 iterations. The positive-rate
+model uses depth 4 and 800 iterations. Both retain learning rate 0.03 and L2 regularisation
+10. We average the three complete dollar predictions with equal weights, then round
+to two decimals. We do not average the two stages separately or fit blend weights.
+Feature engineering, data, and validation folds are unchanged.
+
+Files, with paths relative to the repository root:
+
+- `submissions/submission_catboost_seedavg_attempt5.csv`: candidate for the next upload.
+- `development/FIT5149_A1_attempt5.ipynb`: standalone implementation of this candidate.
+- `development/attempt5_experiments.py`: comparison, export, and verification helper.
+- `development/model_checks/attempt5_*.json`: settings and measured results.
+
+The attempt 5 notebook passed a fresh-kernel execution with all 11 code cells and no
+errors. It reproduced the exported CSV byte for byte. The file has 10,000 checked rows
+with the required identifiers, columns, and prediction bounds. This check is saved in
+`development/model_checks/attempt5_verification.json`; it is a reproducibility check,
+not evidence that the public score will improve.
+
+To reproduce the comparison:
+
+```bash
+python development/attempt5_experiments.py
+python development/attempt5_experiments.py --models seed_average --split-seed 2026
+```
+
+To rerun the standalone notebook verification on Eric's registered `fit5196` kernel:
+
+```bash
+python development/attempt5_experiments.py --verify-notebook submission_catboost_seedavg_attempt5.csv
+```
+
+Attempt 5 was subsequently submitted and scored 33,119.70974, compared with attempt 4's
+33,096.96156. This is 22.74818 worse on the public leaderboard. The team stayed at
+position 19 in Eric's screenshot. We retain the simpler attempt 4 implementation: the
+seed average did not give a clear validation improvement, and its public score was
+also slightly worse. The private results remain unknown.
+
+The root `FIT5149_A1_final.ipynb` and `submission.csv` still belong to attempt 4.
+The attempt 5 notebook and CSV remain in the development and submission-history folders.
 
 ## What Aditya can finish
 

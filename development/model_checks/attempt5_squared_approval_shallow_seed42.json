@@ -1,0 +1,98 @@
+{
+  "config": {
+    "seeds": [
+      42
+    ],
+    "approval_iterations": 1200,
+    "weight_power": 0,
+    "approval_objective": "squared",
+    "approval_depth": 3
+  },
+  "split_seed": 42,
+  "data_sha256": "21ac075937984774193665bf66dbbcbd357ac28d6c58b506df40cc32fea50f70",
+  "model_code_sha256": "c24407dd43903f0239b61153409d9b78f0ffa3c56074acc0d5e2189324c2e2bb",
+  "features": [
+    "applicant_gender",
+    "applicant_age",
+    "annual_income_aud",
+    "income_consistency",
+    "occupation_class",
+    "employment_sector",
+    "residence_area",
+    "requested_amount_aud",
+    "existing_repayments_aud",
+    "expense_flag_a",
+    "expense_flag_b",
+    "dependants_count",
+    "credit_rating",
+    "prior_default_count",
+    "card_status",
+    "property_category",
+    "property_area",
+    "has_co_applicant",
+    "property_value_aud",
+    "marketing_channel",
+    "branch_id",
+    "monthly_income_aud",
+    "risk_review_flag",
+    "enquiry_count_12m",
+    "missing_value_count",
+    "applicant_gender_is_missing",
+    "annual_income_aud_is_missing",
+    "income_consistency_is_missing",
+    "employment_sector_is_missing",
+    "existing_repayments_aud_is_missing",
+    "dependants_count_is_missing",
+    "credit_rating_is_missing",
+    "property_age_years_is_missing",
+    "property_area_is_missing",
+    "has_co_applicant_is_missing",
+    "property_value_aud_is_missing",
+    "monthly_income_aud_is_missing",
+    "application_year",
+    "application_month_sin",
+    "application_month_cos",
+    "application_dayofyear_sin",
+    "application_dayofyear_cos",
+    "annual_income_reconciled_aud",
+    "income_sources_available",
+    "income_relative_gap",
+    "requested_to_property_value",
+    "requested_to_annual_income",
+    "repayments_to_monthly_income",
+    "property_value_minus_requested"
+  ],
+  "name": "squared_approval_shallow",
+  "mean_fold_rmse_aud": 34411.71300752452,
+  "global_oof_rmse_aud": 34427.50533048937,
+  "sd_fold_rmse_aud": 1167.4428996528763,
+  "mae_aud": 17981.13550163758,
+  "folds": [
+    {
+      "fold": 1,
+      "rmse_aud": 32999.02178173095,
+      "mae_aud": 17258.596044675138
+    },
+    {
+      "fold": 2,
+      "rmse_aud": 34922.890395935436,
+      "mae_aud": 18125.63775257321
+    },
+    {
+      "fold": 3,
+      "rmse_aud": 35364.55696237931,
+      "mae_aud": 18301.230046350378
+    },
+    {
+      "fold": 4,
+      "rmse_aud": 33317.061540745824,
+      "mae_aud": 17699.441302324543
+    },
+    {
+      "fold": 5,
+      "rmse_aud": 35455.03435683108,
+      "mae_aud": 18520.921957814833
+    }
+  ],
+  "seconds": 28.370440006256104
+}

@@ -1,0 +1,171 @@
+{
+  "model": "seed_average",
+  "validation": {
+    "mean_fold_rmse_aud": 33989.174712297216,
+    "sd_fold_rmse_aud": 1173.8888338020263,
+    "global_oof_rmse_aud": 34005.333816707054,
+    "mae_aud": 16874.123337669615,
+    "validation_seconds": 194.55796885490417
+  },
+  "permutation_checks": [
+    {
+      "feature": "requested_amount_aud",
+      "mean": 51192.80894063283,
+      "std": 1834.810296649459
+    },
+    {
+      "feature": "credit_rating",
+      "mean": 20580.685014028655,
+      "std": 1866.154866143744
+    },
+    {
+      "feature": "has_co_applicant",
+      "mean": 17973.31560339502,
+      "std": 927.0415203055322
+    },
+    {
+      "feature": "income_consistency",
+      "mean": 1348.3640396416208,
+      "std": 415.239117473371
+    },
+    {
+      "feature": "applicant_age",
+      "mean": 50.27670344416498,
+      "std": 36.45273910631558
+    }
+  ],
+  "error_groups": {
+    "approved": [
+      {
+        "approved": "False",
+        "rows": 5177.0,
+        "rmse_aud": 58813.43494481138,
+        "mae_aud": 30351.309690189686,
+        "mean_error_aud": -30351.309690189686
+      },
+      {
+        "approved": "True",
+        "rows": 14145.0,
+        "rmse_aud": 17708.79764722323,
+        "mae_aud": 11941.539827807723,
+        "mean_error_aud": 11013.84952895198
+      }
+    ],
+    "credit_missing": [
+      {
+        "credit_missing": "False",
+        "rows": 15369.0,
+        "rmse_aud": 32007.564061973568,
+        "mae_aud": 15067.094831271801,
+        "mean_error_aud": -256.2438647767209
+      },
+      {
+        "credit_missing": "True",
+        "rows": 3953.0,
+        "rmse_aud": 40854.593423499675,
+        "mae_aud": 23899.729488650635,
+        "mean_error_aud": 657.8252665487482
+      }
+    ],
+    "request_band": [
+      {
+        "request_band": "(9467.479, 58154.086]",
+        "rows": 3865.0,
+        "rmse_aud": 9014.34086950885,
+        "mae_aud": 5119.5516581346465,
+        "mean_error_aud": -200.33935742748864
+      },
+      {
+        "request_band": "(58154.086, 97642.096]",
+        "rows": 3864.0,
+        "rmse_aud": 15755.433602825708,
+        "mae_aud": 9213.74193512586,
+        "mean_error_aud": -10.213044528438775
+      },
+      {
+        "request_band": "(97642.096, 139523.094]",
+        "rows": 3864.0,
+        "rmse_aud": 24138.324325511843,
+        "mae_aud": 14455.524789303272,
+        "mean_error_aud": 180.73337397471423
+      },
+      {
+        "request_band": "(139523.094, 204700.392]",
+        "rows": 3864.0,
+        "rmse_aud": 36495.05108748168,
+        "mae_aud": 22006.706558670918,
+        "mean_error_aud": -513.2212261745707
+      },
+      {
+        "request_band": "(204700.392, 933695.43]",
+        "rows": 3865.0,
+        "rmse_aud": 59476.34968432182,
+        "mae_aud": 33573.811954945224,
+        "mean_error_aud": 196.81221276304117
+      }
+    ],
+    "sanction_rate": [
+      {
+        "sanction_rate": "0.0",
+        "rows": 5177.0,
+        "rmse_aud": 58813.43494481138,
+        "mae_aud": 30351.309690189686,
+        "mean_error_aud": -30351.309690189686
+      },
+      {
+        "sanction_rate": "0.65",
+        "rows": 3257.0,
+        "rmse_aud": 9795.079459957982,
+        "mae_aud": 6726.837811845597,
+        "mean_error_aud": 5997.949781219578
+      },
+      {
+        "sanction_rate": "0.7",
+        "rows": 5686.0,
+        "rmse_aud": 14010.324192360587,
+        "mae_aud": 10644.761549711568,
+        "mean_error_aud": 8996.289171817718
+      },
+      {
+        "sanction_rate": "0.75",
+        "rows": 2568.0,
+        "rmse_aud": 17126.573337396312,
+        "mae_aud": 12335.672697893175,
+        "mean_error_aud": 11800.245509084332
+      },
+      {
+        "sanction_rate": "0.8",
+        "rows": 2502.0,
+        "rmse_aud": 25317.0517150228,
+        "mae_aud": 19703.94756660466,
+        "mean_error_aud": 19703.94756660466
+      },
+      {
+        "sanction_rate": "0.85",
+        "rows": 42.0,
+        "rmse_aud": 82899.0220469115,
+        "mae_aud": 34492.446163905195,
+        "mean_error_aud": 34492.446163905195
+      },
+      {
+        "sanction_rate": "0.9",
+        "rows": 50.0,
+        "rmse_aud": 66170.71474272762,
+        "mae_aud": 41262.05296386328,
+        "mean_error_aud": 41262.05296386328
+      },
+      {
+        "sanction_rate": "1.0",
+        "rows": 40.0,
+        "rmse_aud": 59756.4012184039,
+        "mae_aud": 49714.65631468686,
+        "mean_error_aud": 49714.65631468686
+      }
+    ]
+  },
+  "fresh_kernel_passed": true,
+  "exact_csv_match": true,
+  "prediction_sha256": "a6d0b4ce2472ab9f6c4593d8b2c0c770edd10e8aeb04a7d2a49595f8b7f625df",
+  "notebook": "development/FIT5149_A1_attempt5.ipynb",
+  "notebook_source_sha256": "428c1e196b7a8bc05e9894be9763b80df8fe0ea1bfd971db4419c0ac2fd08c41"
+}

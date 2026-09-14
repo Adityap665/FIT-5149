@@ -16,6 +16,8 @@ FIT-5149/
   development/              Earlier notebooks and experiment tools
     FIT5149_A1_analysis.ipynb
     FIT5149_A1_final_clean.ipynb
+    FIT5149_A1_attempt5.ipynb
+    attempt5_experiments.py
     loan_experiments.py
     prepare_final_notebook.py
     verify_final_notebook.py
@@ -25,7 +27,7 @@ FIT-5149/
   forms/                    Original Word templates
 ```
 
-There are three working notebooks. Use the final notebook in the root for the current
+There are four working notebooks, including the separate attempt 5 experiment. Use the final notebook in the root for the current
 submission. The analysis notebook contains our EDA and development work. The older
 final-clean notebook is Aditya's single-model implementation for attempts 2/3.
 The empty local `Untitled.ipynb` draft is also preserved under `development/` and ignored by Git.
@@ -33,6 +35,18 @@ The empty local `Untitled.ipynb` draft is also preserved under `development/` an
 The notes in `report/` are drafting material, not the completed five-page PDF report.
 The files in `forms/` are templates, not completed or signed forms.
 The repository as a whole is not the final implementation ZIP.
+
+## Last experimental attempt
+
+`submissions/submission_catboost_seedavg_attempt5.csv` is a separate candidate that
+averages three versions of the two-stage model, using seeds 42, 73, and 2026.
+Its implementation is `development/FIT5149_A1_attempt5.ipynb`.
+Validation is effectively tied with attempt 4: slightly worse on the original split
+and slightly better on the second. Its confirmed public RMSE was 33,119.70974, slightly
+worse than attempt 4's 33,096.96156. We retain the simpler attempt 4 implementation.
+The root final notebook and `submission.csv` still reproduce attempt 4.
+The attempt 5 notebook was executed from a fresh kernel and reproduced its CSV exactly.
+See `report/KAGGLE_ATTEMPTS.md` for the full comparison.
 
 ## Current model and submission
 

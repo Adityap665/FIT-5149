@@ -5,6 +5,8 @@ report evidence, and rerunning comparisons. They are not extra final submissions
 
 - `FIT5149_A1_analysis.ipynb`: EDA, cleaning evidence, early model comparisons, and attempts 1/2.
 - `FIT5149_A1_final_clean.ipynb`: Aditya's earlier CatBoost implementation for attempts 2/3.
+- `FIT5149_A1_attempt5.ipynb`: separate three-seed candidate for the last experimental upload.
+- `attempt5_experiments.py`: compares the last variations and exports/verifies attempt 5.
 - `loan_experiments.py`: later model comparisons and optional new CSV export.
 - `prepare_final_notebook.py`: helper to build a new standalone notebook. It is not needed
   to run the current final notebook and does not reproduce its later handwritten commentary.

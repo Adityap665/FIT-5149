@@ -1,0 +1,17 @@
+{
+  "model": "seed_average",
+  "config": {
+    "seeds": [
+      42,
+      73,
+      2026
+    ],
+    "approval_iterations": 1200,
+    "weight_power": 0
+  },
+  "model_code_sha256": "c24407dd43903f0239b61153409d9b78f0ffa3c56074acc0d5e2189324c2e2bb",
+  "data_sha256": "21ac075937984774193665bf66dbbcbd357ac28d6c58b506df40cc32fea50f70",
+  "rows": 10000,
+  "file": "submissions/submission_catboost_seedavg_attempt5.csv",
+  "prediction_sha256": "a6d0b4ce2472ab9f6c4593d8b2c0c770edd10e8aeb04a7d2a49595f8b7f625df"
+}

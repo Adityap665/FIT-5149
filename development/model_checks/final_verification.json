@@ -5,7 +5,7 @@
     "sd_fold_rmse_aud": 1194.3243314853962,
     "global_oof_rmse_aud": 33975.51233094338,
     "mae_aud": 16850.524035619826,
-    "validation_seconds": 54.08968377113342
+    "validation_seconds": 54.58854675292969
   },
   "permutation_checks": [
     {
@@ -164,8 +164,8 @@
     ]
   },
   "notebook": "FIT5149_A1_final.ipynb",
-  "candidate_file": "submission_catboost_twostage_attempt4.csv",
-  "code_sha256": "ad17e1743150b5aa330b3bfeaafb4d4ff28849b895be661dfd71e2846f486b7d",
+  "candidate_file": "submissions/submission_catboost_twostage_attempt4.csv",
+  "code_sha256": "8284417f207e187416e7cfcf435f7caceb0e6b7e1355147127f5a5e67dd10bea",
   "prediction_sha256": "53a5594ef946ab07932f9599b064556ca112b2e6275606b72da4950ab6be054a",
   "fresh_kernel_passed": true,
   "exact_csv_match": true
