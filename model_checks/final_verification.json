@@ -1,0 +1,172 @@
+{
+  "model": "catboost_two_stage",
+  "validation": {
+    "mean_fold_rmse_aud": 33958.77327986962,
+    "sd_fold_rmse_aud": 1194.3243314853962,
+    "global_oof_rmse_aud": 33975.51233094338,
+    "mae_aud": 16850.524035619826,
+    "validation_seconds": 54.08968377113342
+  },
+  "permutation_checks": [
+    {
+      "feature": "requested_amount_aud",
+      "mean": 51198.692613362946,
+      "std": 1842.1062204198
+    },
+    {
+      "feature": "credit_rating",
+      "mean": 20197.500883022098,
+      "std": 1872.8418296785662
+    },
+    {
+      "feature": "has_co_applicant",
+      "mean": 17953.142795221276,
+      "std": 903.8644541684888
+    },
+    {
+      "feature": "income_consistency",
+      "mean": 1355.6911501455802,
+      "std": 489.27495256496064
+    },
+    {
+      "feature": "applicant_age",
+      "mean": 59.875788419216406,
+      "std": 40.81665542122949
+    }
+  ],
+  "error_groups": {
+    "approved": [
+      {
+        "approved": "False",
+        "rows": 5177.0,
+        "rmse_aud": 58764.55518340607,
+        "mae_aud": 30374.433069651066,
+        "mean_error_aud": -30374.433069651066
+      },
+      {
+        "approved": "True",
+        "rows": 14145.0,
+        "rmse_aud": 17689.988331486406,
+        "mae_aud": 11900.840255543493,
+        "mean_error_aud": 10971.30606824094
+      }
+    ],
+    "credit_missing": [
+      {
+        "credit_missing": "False",
+        "rows": 15369.0,
+        "rmse_aud": 32006.06008243079,
+        "mae_aud": 15061.23176788936,
+        "mean_error_aud": -285.4280850993183
+      },
+      {
+        "credit_missing": "True",
+        "rows": 3953.0,
+        "rmse_aud": 40737.732606881116,
+        "mae_aud": 23807.172875171957,
+        "mean_error_aud": 588.7752526121741
+      }
+    ],
+    "request_band": [
+      {
+        "request_band": "(9467.479, 58154.086]",
+        "rows": 3865.0,
+        "rmse_aud": 9013.714663555005,
+        "mae_aud": 5117.973205151186,
+        "mean_error_aud": -205.48757712737762
+      },
+      {
+        "request_band": "(58154.086, 97642.096]",
+        "rows": 3864.0,
+        "rmse_aud": 15764.527364730531,
+        "mae_aud": 9203.623579776486,
+        "mean_error_aud": -55.64948633664311
+      },
+      {
+        "request_band": "(97642.096, 139523.094]",
+        "rows": 3864.0,
+        "rmse_aud": 24143.64441153848,
+        "mae_aud": 14435.146163519512,
+        "mean_error_aud": 136.35800738786733
+      },
+      {
+        "request_band": "(139523.094, 204700.392]",
+        "rows": 3864.0,
+        "rmse_aud": 36482.391336483466,
+        "mae_aud": 21963.784918341473,
+        "mean_error_aud": -571.9520405148578
+      },
+      {
+        "request_band": "(204700.392, 933695.43]",
+        "rows": 3865.0,
+        "rmse_aud": 59394.384111894804,
+        "mae_aud": 33530.81184107886,
+        "mean_error_aud": 163.79269818610436
+      }
+    ],
+    "sanction_rate": [
+      {
+        "sanction_rate": "0.0",
+        "rows": 5177.0,
+        "rmse_aud": 58764.55518340607,
+        "mae_aud": 30374.433069651066,
+        "mean_error_aud": -30374.433069651066
+      },
+      {
+        "sanction_rate": "0.65",
+        "rows": 3257.0,
+        "rmse_aud": 9815.446704745222,
+        "mae_aud": 6700.673790149982,
+        "mean_error_aud": 5957.119156818047
+      },
+      {
+        "sanction_rate": "0.7",
+        "rows": 5686.0,
+        "rmse_aud": 14003.443665843786,
+        "mae_aud": 10601.920261920837,
+        "mean_error_aud": 8964.28768446066
+      },
+      {
+        "sanction_rate": "0.75",
+        "rows": 2568.0,
+        "rmse_aud": 17117.252494758177,
+        "mae_aud": 12278.209922879867,
+        "mean_error_aud": 11727.226744066007
+      },
+      {
+        "sanction_rate": "0.8",
+        "rows": 2502.0,
+        "rmse_aud": 25337.68380535512,
+        "mae_aud": 19674.179070624697,
+        "mean_error_aud": 19674.179070624697
+      },
+      {
+        "sanction_rate": "0.85",
+        "rows": 42.0,
+        "rmse_aud": 81820.8068757745,
+        "mae_aud": 34292.57862673857,
+        "mean_error_aud": 34292.57862673857
+      },
+      {
+        "sanction_rate": "0.9",
+        "rows": 50.0,
+        "rmse_aud": 65605.00869727206,
+        "mae_aud": 41033.78683346344,
+        "mean_error_aud": 41033.78683346344
+      },
+      {
+        "sanction_rate": "1.0",
+        "rows": 40.0,
+        "rmse_aud": 59707.93690049965,
+        "mae_aud": 49588.88775519187,
+        "mean_error_aud": 49588.88775519187
+      }
+    ]
+  },
+  "notebook": "FIT5149_A1_final.ipynb",
+  "candidate_file": "submission_catboost_twostage_attempt4.csv",
+  "code_sha256": "ad17e1743150b5aa330b3bfeaafb4d4ff28849b895be661dfd71e2846f486b7d",
+  "prediction_sha256": "53a5594ef946ab07932f9599b064556ca112b2e6275606b72da4950ab6be054a",
+  "fresh_kernel_passed": true,
+  "exact_csv_match": true
+}

@@ -1,0 +1,97 @@
+{
+  "config": {
+    "kind": "two_stage",
+    "depth": 4,
+    "iterations": 800,
+    "learning_rate": 0.03,
+    "l2_leaf_reg": 10.0,
+    "feature_set": "small"
+  },
+  "split_seed": 42,
+  "model_seed": 42,
+  "data_sha256": "21ac075937984774193665bf66dbbcbd357ac28d6c58b506df40cc32fea50f70",
+  "features": [
+    "applicant_gender",
+    "applicant_age",
+    "annual_income_aud",
+    "income_consistency",
+    "occupation_class",
+    "employment_sector",
+    "residence_area",
+    "requested_amount_aud",
+    "existing_repayments_aud",
+    "expense_flag_a",
+    "expense_flag_b",
+    "dependants_count",
+    "credit_rating",
+    "prior_default_count",
+    "card_status",
+    "property_category",
+    "property_area",
+    "has_co_applicant",
+    "property_value_aud",
+    "marketing_channel",
+    "branch_id",
+    "monthly_income_aud",
+    "risk_review_flag",
+    "enquiry_count_12m",
+    "missing_value_count",
+    "applicant_gender_is_missing",
+    "annual_income_aud_is_missing",
+    "income_consistency_is_missing",
+    "employment_sector_is_missing",
+    "existing_repayments_aud_is_missing",
+    "dependants_count_is_missing",
+    "credit_rating_is_missing",
+    "property_age_years_is_missing",
+    "property_area_is_missing",
+    "has_co_applicant_is_missing",
+    "property_value_aud_is_missing",
+    "monthly_income_aud_is_missing",
+    "application_year",
+    "application_month_sin",
+    "application_month_cos",
+    "application_dayofyear_sin",
+    "application_dayofyear_cos",
+    "annual_income_reconciled_aud",
+    "income_sources_available",
+    "income_relative_gap",
+    "requested_to_property_value",
+    "requested_to_annual_income",
+    "repayments_to_monthly_income",
+    "property_value_minus_requested"
+  ],
+  "name": "catboost_two_stage_small",
+  "mean_fold_rmse_aud": 34120.27564476072,
+  "sd_fold_rmse_aud": 1227.0395417094996,
+  "global_oof_rmse_aud": 34137.864008730205,
+  "mae_aud": 16960.546399432358,
+  "folds": [
+    {
+      "fold": 1,
+      "rmse_aud": 32509.56368499554,
+      "mae_aud": 16216.006809157108
+    },
+    {
+      "fold": 2,
+      "rmse_aud": 34605.87406603997,
+      "mae_aud": 17079.745927287768
+    },
+    {
+      "fold": 3,
+      "rmse_aud": 35152.7745615694,
+      "mae_aud": 17211.558839667905
+    },
+    {
+      "fold": 4,
+      "rmse_aud": 33136.543500939995,
+      "mae_aud": 16703.18771681651
+    },
+    {
+      "fold": 5,
+      "rmse_aud": 35196.622410258686,
+      "mae_aud": 17592.394541722762
+    }
+  ],
+  "seconds": 41.18957281112671
+}

@@ -111,7 +111,7 @@ count and specific missingness indicators instead of relying only on imputed val
 - Categories are imputed and encoded inside each fold. Unknown and rare levels are
   handled without fitting encoders on the Kaggle test data.
 - `property_ref` was initially treated as categorical rather than continuous. Removing it
-  lowers Random Forest mean RMSE from AUD 35,994 to AUD 35,956. The AUD 38 change is
+  lowers saved Random Forest mean RMSE from AUD 35,973 to AUD 35,965. The AUD 8 change is
   small, but the simpler model performs slightly better, so later models exclude it.
 - Lending features include requested/property value, requested/reconciled annual income,
   repayments/reconciled monthly income, and property value minus requested amount.
@@ -128,34 +128,36 @@ fold, and all model families use identical precomputed folds.
 
 | Model | Mean RMSE | RMSE SD | Mean MAE |
 |---|---:|---:|---:|
-| Random Forest | AUD 35,994 | AUD 1,447 | AUD 17,989 |
+| Random Forest | AUD 35,973 | AUD 1,450 | AUD 17,979 |
 | Histogram Gradient Boosting | AUD 36,065 | AUD 1,283 | AUD 19,047 |
 | Ridge | AUD 43,306 | AUD 887 | AUD 27,868 |
 
-Random Forest currently leads Histogram Gradient Boosting by only AUD 71 mean RMSE. It
-wins four of five paired folds, while Gradient Boosting wins one fold by AUD 693. The
-difference is too small to declare either model final before a small tuning comparison.
+In this initial comparison, Random Forest leads Histogram Gradient Boosting by about
+AUD 92 mean RMSE. It wins four of five paired folds, while Gradient Boosting wins one
+fold by about AUD 646. This small difference did not establish the final model.
 
 RMSE remains the selection metric because it is the Kaggle metric and penalises costly
 large-dollar errors. MAE is reported as an operationally interpretable alternative.
 MAPE is unsuitable because 26.79% of targets are zero.
 
-Current error analysis shows a major scale limitation: Random Forest RMSE rises from AUD
-9,375 in the smallest requested-amount quintile to AUD 63,686 in the largest quintile.
-The zero-sanction group also has RMSE of AUD 60,841. The next modelling stage should
+The saved error analysis shows a major scale limitation: Random Forest RMSE rises from AUD
+9,373 in the smallest requested-amount quintile to AUD 63,628 in the largest quintile.
+The zero-sanction group also has RMSE of AUD 60,812. The next modelling stage should
 check whether small tuning changes improve errors for zero sanctions and large loans.
 
 After excluding `property_ref`, the original Random Forest settings produce a mean RMSE
-of AUD 35,956. The closest result is the initial Histogram Gradient Boosting model at AUD
+of AUD 35,965 in the saved run. The closest result is the initial Histogram Gradient Boosting model at AUD
 35,975. Five small parameter changes were tested across the same folds, but none improved
 on the original Random Forest settings. In particular, reducing its minimum leaf size
-increases mean RMSE to AUD 36,277, which suggests additional overfitting.
+increases mean RMSE to AUD 36,293, which is consistent with additional overfitting.
 
-Permutation evidence supports the earlier EDA. Shuffling `requested_amount_aud`
-increases validation RMSE by an average of AUD 32,585. The next largest increases are
-AUD 18,554 for `has_co_applicant` and AUD 17,008 for `credit_rating`. These results are
+Random Forest permutation evidence supports the earlier EDA. Shuffling `requested_amount_aud`
+increases validation RMSE by an average of AUD 32,423 in the saved output. The next largest increases are
+AUD 18,518 for `has_co_applicant` and AUD 17,000 for `credit_rating`. These results are
 used together with the numeric correlations and categorical rates because correlated
 features can share information and appear less important when shuffled separately.
+These figures describe Random Forest. They should not be presented as CatBoost feature
+importance or as the final model's error analysis.
 
 ## Kaggle attempt 1
 
@@ -165,17 +167,32 @@ Public RMSE of 35,514.14046 and position 37 at the time of submission. The publi
 is approximately AUD 442 lower than the cross-validation result, but it is recorded only
 as a first comparison because the public leaderboard uses 20% of the test rows.
 
-## Handoff to the modelling work
+The value AUD 35,956 above is the historical CV result recorded for attempt 1. The
+saved development run now shows AUD 35,965. Keep these runs distinguishable rather
+than presenting their numbers as if they came from one execution.
 
-The remaining work can now be handed over for the next modelling attempt:
+## Aditya's CatBoost model and final checks
 
-1. review the current preprocessing, validation folds, and first Kaggle result;
-2. take ownership of a more competitive target-aware or boosting approach;
-3. evaluate it using the same five folds and record the result before using Kaggle;
-4. create `submission_<model>_attempt2.csv` only if the validation result improves;
-5. help write the modelling results and limitations for the report;
-6. select the final model together, retrain it on all labelled data, and create the
-   nominated submission file.
+Aditya's attempt 2 used CatBoost to predict the sanction rate and achieved a mean
+five-fold RMSE of about AUD 34,100. Its public score was 33,510.57914. The third
+Kaggle upload matched that public score. The clean notebook retains the same feature
+values, folds, model settings, and prediction formula as attempt 2.
+
+The remaining modelling work is to compare a small number of new candidates, examine
+the selected model's own validation errors, and reproduce its exact prediction file.
+The final report also needs both Kaggle usernames, the team name TEAM ERIC-ADITYA,
+the group ID 43, and the actual division of work.
 
 The public leaderboard can be recorded as a secondary check, but it should not replace
 the cross-validation evidence used to choose the final model.
+
+## Final modelling update
+
+The new candidate is two-stage CatBoost. It improves mean fold RMSE from AUD 34,099.76
+to AUD 33,958.77 on the original folds. With split seed 2026, it improves from AUD
+34,323.40 to AUD 34,119.05. This is a modest, consistent change across these partitions,
+not a guarantee of a better Kaggle score. Both partitions reuse the same labelled rows.
+
+Use `KAGGLE_ATTEMPTS.md` and the executed `FIT5149_A1_final.ipynb` for the final model's
+error analysis and feature checks. The prepared attempt 4 CSV is
+`submission_catboost_twostage_attempt4.csv`; its public score is still pending.
